@@ -34,6 +34,12 @@ public class Turma {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    
+    public void matricula(Aluno al){
+        alunos.add(al);
+        al.setTurma(this);
+    }
+
 //Operacao Setar Notas do Aluno
 
     public void setarNotas(Aluno aluno, float nota1, float nota2) {
