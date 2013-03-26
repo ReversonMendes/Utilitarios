@@ -1,5 +1,6 @@
 package br.com.reverson.ControleDeTurmas;
 
+import br.com.reverson.utilitarios.io.Console;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -34,25 +35,21 @@ public class Turma {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    public void matricula(Aluno al){
+
+    public void matricula(Aluno al) {
         alunos.add(al);
         al.setTurma(this);
     }
 
 //Operacao Setar Notas do Aluno
+    public void setarNotas(Aluno aluno) {
+        
+        Console.escrever("Digite A nota G1 do aluno :");
+        aluno.setNotaG1(Console.lerFloat());
+        
+        Console.escrever("Digite A nota G2 do aluno :");
+        aluno.setNotaG2(Console.lerFloat());
 
-    public void setarNotas(Aluno aluno, float nota1, float nota2) {
-        Scanner G1 = new Scanner(System.in);
-        System.out.println("Digite A nota G1 do aluno :");
-        nota1 = G1.nextFloat();
-
-        Scanner G2 = new Scanner(System.in);
-        System.out.println("Digite A nota G2 do aluno :");
-        nota2 = G2.nextFloat();
-
-        aluno.setNotaG1(nota1);
-        aluno.setNotaG2(nota2);
     }
 
     //Operacao Quantidade de Alunos
@@ -112,5 +109,15 @@ public class Turma {
         porcentagem = (quantidade / 100) * this.quantidadeAlunosReprovados();
         return porcentagem;
 
+    }
+       
+
+    public double media_geral_turma() {
+        int nContador, nTotal = 0;
+
+        for (nContador = 0; nContador <= this.alunos.size(); nContador++) {
+            nTotal += alunos.get(nContador).calcularMedia();
+        }
+        return nTotal / quantidadeAlunos();
     }
 }
